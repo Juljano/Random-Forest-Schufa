@@ -1,0 +1,58 @@
+import os.path
+import cleaning_trainings_data
+from random_forest import read_training_data, train_random_forest
+
+credit_info = [
+    "Existing account status (y/n)?",
+    "Credit duration in months?",
+    "Previous credit history reliable (y/n)?",
+    "Purpose of the credit?",
+    "Credit amount?",
+    "Savings account (y/n)?",
+    "Employment duration (y/n)?",
+    "Installment rate reasonable (y/n)?",
+    "Personal status & sex? Choose 1 - 4 "
+    "1: Male, divorced/separated/married",
+    "2: Female, divorced/separated/married",
+    "3: Male Single",
+    "4: Female Single",
+    "Other guarantors (y/n)?",
+    "Residence duration?",
+    "Property ownership (y/n)?",
+    "Age?",
+    "Other installment plans (y/n)?",
+    "Housing (y/n)?",
+    "Existing credits (y/n)?",
+    "Job type (y/n)?",
+    "Number of dependents (y/n)?",
+    "Telephone (y/n)?",
+    "Foreign worker (y/n)?"
+]
+
+
+if __name__ == "__main__":
+    if not os.path.exists("Training/Cleaned-german-Credit-Data.csv"):
+        print("Please wait we are training the Random Forest-Model")
+        cleaning_trainings_data.cleaning_trainings_data()
+    else:
+
+        try:
+            print("Please wait....")
+            x, y = read_training_data()
+            print("Hello and welcome to Sparkasse Eilsener-Hause.")
+            print("Please enter your information to rating your credit score:")
+            print("y: Yes , n: No")
+            customer_credit_information = []
+            for i in credit_info:
+                customer_answer = input(F"{i}: ")
+                if customer_answer == "y" or customer_answer == "yes":
+                    customer_credit_information.append(1) #True
+                elif customer_answer == "n" or customer_answer == "no":
+                    customer_credit_information.append(0) #False
+            train_random_forest(x, y, customer_credit_information)
+        except IOError as error:
+            print(f"Something went wrong {error}")
+
+
+
+
