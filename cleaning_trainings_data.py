@@ -5,7 +5,6 @@ from streamlit import columns
 #Source https://archive.ics.uci.edu/dataset/144/statlog+german+credit+data
 # Last Update: 1994 😫
 
-
 def cleaning_trainings_data():
     df = pd.read_csv('Training/german.data-numeric', delim_whitespace=True, header=None)
 
@@ -45,3 +44,4 @@ def cleaning_trainings_data():
 
     # saving cleaned dataset as csv-file
     df.to_csv("Training/Cleaned-german-Credit-Data.csv", index=False)
+

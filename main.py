@@ -24,7 +24,6 @@ credit_info = [
     "Foreign worker (y/n)?"
 ]
 
-
 if __name__ == "__main__":
     if not os.path.exists("Training/Cleaned-german-Credit-Data.csv"):
         print("Please wait we are training the Random Forest-Model")
