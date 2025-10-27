@@ -39,16 +39,9 @@ def cleaning_trainings_data():
 
     df["score"] = df["score"].replace({1: 1, 2: 0})  #replace 2 with 0
 
-    #delete the "Unknown"-Columns
+    #delete the "Unknown" and "other_debtors" -Columns
     df = df.drop(columns=["unknown"])
-
-    print(df["score"].value_counts())
-
-    '''
-     score
-     1 700
-     0 300
-    '''
+    df = df.drop(columns=["other_debtors"])
 
     # saving cleaned dataset as csv-file
     df.to_csv("Training/Cleaned-german-Credit-Data.csv", index=False)
